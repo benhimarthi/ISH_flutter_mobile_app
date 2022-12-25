@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:transport/CubitInterraction/IdentificationCubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transport/CubitInterraction/authentification.cubit.operations.dart';
 
 class SearchCircuit extends StatelessWidget {
   const SearchCircuit({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(
+    IdentificationCubit cubitManager = context.read<IdentificationCubit>();
+    var user = cubitManager.state['user'];
+    return Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      Container(
           width: MediaQuery.of(context).size.width * .98,
           padding: const EdgeInsets.all(10),
           //height: MediaQuery.of(context).size.height * .5,
@@ -20,6 +23,13 @@ class SearchCircuit extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Visibility(
+                  visible: false,
+                  child: Container(
+                    width: 100,
+                    height: 50,
+                    color: Colors.amber,
+                  )),
               Container(
                 width: MediaQuery.of(context).size.width * .94,
                 height: 40,
@@ -162,39 +172,7 @@ class SearchCircuit extends StatelessWidget {
                     ),
                   ))
             ],
-          ),
-        ),
-        /*SizedBox(
-          width: MediaQuery.of(context).size.width * .96,
-          height: 60,
-          child: Center(
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: SizedBox(
-                width: 59,
-                height: 20,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                        child: const Text(
-                      "Skip",
-                      style: TextStyle(
-                          color: Colors.blue, fontWeight: FontWeight.w400),
-                    )),
-                    GestureDetector(
-                        child: const Icon(
-                      Icons.arrow_right,
-                      color: Color.fromRGBO(173, 202, 228, 1),
-                    ))
-                  ],
-                ),
-              ),
-            ),
-          ),
-        )*/
-      ],
-    );
+          ))
+    ]);
   }
 }
