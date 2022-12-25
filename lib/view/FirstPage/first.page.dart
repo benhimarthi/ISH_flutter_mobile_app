@@ -4,7 +4,7 @@ import "package:flutter/material.dart";
 import 'package:transport/CubitInterraction/IdentificationCubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../Profile/Circuit_views/SelectionAction.dart';
+import '../Profile/Circuit_views/authentification.dart';
 
 class FirstPage extends StatelessWidget {
   const FirstPage({Key? key}) : super(key: key);
@@ -101,11 +101,14 @@ class FirstPage extends StatelessWidget {
                             child: GestureDetector(
                               onTap: () {
                                 idc.emit({"pageId": 1});
-                                Navigator.push(
-                                    context,
+                                Navigator.pushNamed(
+                                    context, '/authentification');
+                                /*
+                                context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            SelectCircuitPage()));
+                                            AuthentificationPage())
+                                */
                               },
                               child: const Center(
                                 child: Text(
@@ -139,7 +142,7 @@ class FirstPage extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            SelectCircuitPage()));
+                                            AuthentificationPage()));
                               },
                               child: const Center(
                                 child: Text(

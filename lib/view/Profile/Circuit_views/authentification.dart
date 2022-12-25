@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:transport/CubitInterraction/IdentificationCubit.dart';
+import 'package:transport/model/user.model.dart';
 import 'package:transport/view/Profile/Circuit_views/SignIn.dart';
 import 'package:transport/view/Profile/Circuit_views/Login.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SelectCircuitPage extends StatelessWidget {
-  SelectCircuitPage({Key? key});
+class AuthentificationPage extends StatelessWidget {
+  AuthentificationPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class SelectCircuitPage extends StatelessWidget {
           return Scaffold(
             backgroundColor: const Color.fromRGBO(228, 237, 245, 1),
             appBar: AppBar(
-              title: const Text("Circuit",
+              title: const Text("Authentification",
                   style: TextStyle(
                       color: Colors.black54, fontWeight: FontWeight.bold)),
               centerTitle: true,
@@ -38,11 +41,21 @@ class SelectCircuitPage extends StatelessWidget {
                   labelColor: Colors.black54,
                   labelStyle: TextStyle(fontWeight: FontWeight.w300)),
             ),
-            body:
-                const TabBarView(children: [SelectCircuit(), SearchCircuit()]),
+            body: TabBarView(children: [
+              BlocBuilder<IdentificationCubit, Map>(
+                builder: (context, state) {
+                  context.read<IdentificationCubit>().emit({"user": User()});
+                  return const SelectCircuit();
+                },
+              ),
+              BlocBuilder<IdentificationCubit, Map>(
+                builder: (context, state) {
+                  context.read<IdentificationCubit>().emit({"user": User()});
+                  return const SearchCircuit();
+                },
+              )
+            ]),
           );
         }));
   }
 }
-/*
-*/
